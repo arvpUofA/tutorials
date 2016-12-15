@@ -30,7 +30,7 @@ Presentation: https://docs.google.com/presentation/d/1sLNUqFyN1WcnksPeObNLntVeC7
   geometry_msgs/PoseWithCovariance pose
   geometry_msgs/TwistWithCovariance twist
 ```
--Update robot position and orientation when Odometry Subscriber callback is called:
+- Update robot position and orientation when Odometry Subscriber callback is called:
 ```python
   orientation = data.pose.pose.orientation
   position = data.pose.pose.position
