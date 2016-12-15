@@ -7,7 +7,7 @@ Presentation: https://docs.google.com/presentation/d/1sLNUqFyN1WcnksPeObNLntVeC7
 - Add package under src folder in catkin workspace: `git clone -b ros-edmonton-dec https://github.com/arvpUofA/tutorials.git`
 - Run `catkin_make` from root of catkin workspace
 - Start ROS master in terminal: `roscore`
-- In new terminal run start simulator: `rosrun gazebo_ros gazebo -file model/pioneer2dx_ros.world 
+- In new terminal run start simulator: `rosrun gazebo_ros gazebo -file model/pioneer2dx_ros.world`
 - View topics being published by differential drive plugin: `rostopic list`
 - Watch odometry topic: `rostopic echo /pioneer2dx/odom`
 - Control robot by publishing to `/pioneer2dx/cmd_vel` topic: `rosrun pioneer_bot teleop_key.py`
