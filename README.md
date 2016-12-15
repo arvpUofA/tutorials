@@ -54,6 +54,7 @@ Presentation: https://docs.google.com/presentation/d/1sLNUqFyN1WcnksPeObNLntVeC7
   last_error = error
 
   steer = - error * self.P - diff_error * self.D
+  # Note with Gazebo 2, a bug in the ROS plugin means you have to pass the negative of the steering commands
 ```
 - Play with P and D constants until you find something that works 
 - Test drive_to_goal funtion in main 
