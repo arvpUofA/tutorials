@@ -10,6 +10,13 @@ import math
 class PioneerBot:
 
     def __init__(self):
+
+        #################
+
+        ### Add publisher and Subscriber here
+
+        #################
+
         self.x = 0
         self.y = 0
         self.z = 0
