@@ -3,6 +3,7 @@
 Presentation: https://docs.google.com/presentation/d/1sLNUqFyN1WcnksPeObNLntVeC7U2imrrR01AVJhllqs/edit?usp=sharing
 
 ### Part 1 - Setup
+- Create a catkin workspace: http://wiki.ros.org/catkin/Tutorials/create_a_workspace, or skip if you already have one 
 - Add package under src folder in catkin workspace: `git clone -b ros-edmonton-dec https://github.com/arvpUofA/tutorials.git`
 - Run `catkin_make` from root of catkin workspace
 - Start ROS master in terminal: `roscore`
