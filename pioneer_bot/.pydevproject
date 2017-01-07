@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse-pydev version="1.0"?>
+
+<pydev_project>
+<pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">Default</pydev_property>
+<pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python 2.6</pydev_property>
+<pydev_pathproperty name="org.python.pydev.PROJECT_EXTERNAL_SOURCE_PATH">
+<path>/opt/ros/kinetic/share/mk</path>
+<path>/home/sean/catkin_ws/devel/lib/python2.7/dist-packages</path>
+<path>/opt/ros/kinetic/lib/python2.7/dist-packages</path>
+<path>/usr/lib/python2.7</path>
+<path>/usr/lib/python2.7/plat-x86_64-linux-gnu</path>
+<path>/usr/lib/python2.7/lib-tk</path>
+<path>/usr/lib/python2.7/lib-dynload</path>
+<path>/home/sean/.local/lib/python2.7/site-packages</path>
+<path>/usr/local/lib/python2.7/dist-packages</path>
+<path>/home/sean/gym</path>
+<path>/usr/local/lib/python2.7/dist-packages/mxnet-0.7.0-py2.7.egg</path>
+<path>/usr/lib/python2.7/dist-packages</path>
+<path>/usr/lib/python2.7/dist-packages/PILcompat</path>
+<path>/usr/lib/python2.7/dist-packages/gtk-2.0</path>
+</pydev_pathproperty>
+</pydev_project>

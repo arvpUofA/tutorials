@@ -1,38 +1,38 @@
 #!/usr/bin/env python
 from __future__ import division
+import math
 import rospy
 from nav_msgs.msg import Odometry
-from geometry_msgs.msg import Pose
 from geometry_msgs.msg import Twist
 import tf
-import math
 
 class PioneerBot:
 
     def __init__(self):
 
-        #################
-
-        ### Add publisher and Subscriber here
-
-        #################
-
+        self.odometry_sub = rospy.Subscriber("pioneer2dx/odom", Odometry, self.odometry_callback)
+        self.velocity_pub = rospy.Publisher("pioneer2dx/cmd_vel", Twist, queue_size=1)
+        
         self.x = 0
         self.y = 0
         self.z = 0
         self.orientation = 0
         self.P = 2
-        self.D = 50
+        self.D = 25
         self.first = True
 
     def odometry_callback(self,data):
         if(self.first):
             self.first = False
-        ########################
+        orientation = data.pose.pose.orientation
+        position = data.pose.pose.position
 
-        ### Add Subscriber callback code here ###
+        self.x = position.x
+        self.y = position.y
 
-        #########################
+        quaternion = (orientation.x,orientation.y,orientation.z,orientation.w)
+        euler = tf.transformations.euler_from_quaternion(quaternion)
+        self.orientation = euler[2] if euler[2] > 0 else euler[2] + 2*math.pi
 
     def drive_to_goal(self, goal_position):
         p1 = [self.x,self.y]
@@ -52,11 +52,17 @@ class PioneerBot:
         r = rospy.Rate(25) # 25hz
         while(u < 1):
             r.sleep()
-            ########################
+            rx =  self.x - p1[0]
+            ry =  self.y - p1[1]
 
-            ### Add PD code here####
+            u  = (rx * dx + ry * dy) / (dx * dx + dy * dy)
+            error = (ry * dx - rx * dy) / math.sqrt(dx * dx + dy * dy)
 
-            ########################
+            diff_error = error - last_error
+            last_error = error
+
+            steer = - error * self.P - diff_error * self.D
+            # Note with Gazebo 2, a bug in the ROS plugin means you have to pass the negative of the steering commands
             self.move(steer, 0.5)
 
         print("u: {}".format(u))
@@ -75,7 +81,7 @@ class PioneerBot:
         self.velocity_pub.publish(msg)
 
 def main():
-
+    
     # In ROS, nodes are uniquely named. If two nodes with the same
     # node are launched, the previous one is kicked off. The
     # anonymous=True flag means that rospy will choose a unique
@@ -86,6 +92,11 @@ def main():
 
     while(robot.first):
         pass
+
+    robot.drive_to_goal([2,2])
+    robot.drive_to_goal([2,3])
+    robot.drive_to_goal([-5,2])
+    robot.drive_to_goal([-1,-1])
 
     #stops node from exiting
     rospy.spin()
