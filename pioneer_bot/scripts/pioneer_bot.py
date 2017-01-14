@@ -5,12 +5,14 @@ import rospy
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Twist
 import tf
+from sensor_msgs.msg import Image
 
 class PioneerBot:
 
     def __init__(self):
 
         self.odometry_sub = rospy.Subscriber("pioneer2dx/odom", Odometry, self.odometry_callback)
+        self.image_sub = rospy.Subscriber("image_raw", Image, self.image_callback)
         self.velocity_pub = rospy.Publisher("pioneer2dx/cmd_vel", Twist, queue_size=1)
         
         self.x = 0
@@ -21,6 +23,9 @@ class PioneerBot:
         self.D = 25
         self.first = True
 
+    def image_callback(self,data):
+        print("image")
+    
     def odometry_callback(self,data):
         if(self.first):
             self.first = False
@@ -93,10 +98,10 @@ def main():
     while(robot.first):
         pass
 
-    robot.drive_to_goal([2,2])
-    robot.drive_to_goal([2,3])
-    robot.drive_to_goal([-5,2])
-    robot.drive_to_goal([-1,-1])
+    #robot.drive_to_goal([2,2])
+    #robot.drive_to_goal([2,3])
+    #robot.drive_to_goal([-5,2])
+    #robot.drive_to_goal([-1,-1])
 
     #stops node from exiting
     rospy.spin()
