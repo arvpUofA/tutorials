@@ -332,252 +332,8 @@
       <pose>0 0 0 0 -0 0</pose>
       <static>0</static>
       
-      <!-- <include>
-        <uri>model://camera</uri>
-        <pose>0.2 0 0.2 0 0 0</pose>
-      </include>
-      <joint name="camera_joint" type="revolute">
-        <child>camera::link</child>
-        <parent>chassis</parent>
-        <axis>
-          <xyz>0 0 1</xyz>
-          <limit>
-            <upper>0</upper>
-            <lower>0</lower>
-          </limit>
-        </axis>
-      </joint> -->
-
-  <model name='camera'>
-   <pose>0.2 0 0.2 0 0 0</pose>
-   <link name='link'>
-     <inertial>
-       <mass>0.1</mass>
-       <inertia>
-         <ixx>1</ixx>
-         <ixy>0</ixy>
-         <ixz>0</ixz>
-         <iyy>1</iyy>
-         <iyz>0</iyz>
-         <izz>1</izz>
-       </inertia>
-     </inertial>
-     <collision name='collision'>
-       <geometry>
-         <box>
-            <size>0.1 0.1 0.1</size>
-         </box>
-       </geometry>
-       <max_contacts>10</max_contacts>
-       <surface>
-         <contact>
-           <ode/>
-         </contact>
-         <bounce/>
-         <friction>
-           <ode/>
-         </friction>
-       </surface>
-     </collision>
-     <visual name='visual'>
-       <geometry>
-         <box>
-           <size>0.1 0.1 0.1</size>
-         </box>
-       </geometry>
-     </visual>
-     <sensor name='camera' type='camera'>
-       <camera name='__default__'>
-         <horizontal_fov>1.047</horizontal_fov>
-         <image>
-           <width>320</width>
-           <height>240</height>
-         </image>
-         <clip>
-           <near>0.1</near>
-           <far>100</far>
-         </clip>
-       </camera>
-       <plugin name="gazebo_ros_camera" filename="libgazebo_ros_camera.so">
-         <cameraName>camera</cameraName>
-         <alwaysOn>true</alwaysOn>
-         <updateRate>30</updateRate>
-         <imageTopicName>rgb/image_raw</imageTopicName>
-         <depthImageTopicName>depth/image_raw</depthImageTopicName>
-         <pointCloudTopicName>depth/points</pointCloudTopicName>
-         <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
-         <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
-         <frameName>camera_depth_optical_frame</frameName>
-         <baseline>0.1</baseline>
-         <distortion_k1>0.0</distortion_k1>
-         <distortion_k2>0.0</distortion_k2>
-         <distortion_k3>0.0</distortion_k3>
-         <distortion_t1>0.0</distortion_t1>
-         <distortion_t2>0.0</distortion_t2>
-         <pointCloudCutoff>0.4</pointCloudCutoff>
-         <robotNamespace>/</robotNamespace>
-       </plugin>
-     </sensor>
-     <self_collide>0</self_collide>
-     <kinematic>0</kinematic>
-     <gravity>1</gravity>
-   </link>
- </model>
- <joint name="camera_joint" type="revolute">
-        <child>camera::link</child>
-        <parent>chassis</parent>
-        <axis>
-          <xyz>0 0 1</xyz>
-          <limit>
-            <upper>0</upper>
-            <lower>0</lower>
-          </limit>
-        </axis>
-      </joint>
-<!--
-       <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
-    <baseline>0.2</baseline>
-    <alwaysOn>true</alwaysOn>
-    <updateRate>1.0</updateRate>
-    <cameraName>cam_ir</cameraName>
-    <imageTopicName>/cam/depth/image_raw</imageTopicName>
-    <cameraInfoTopicName>/cam/depth/camera_info</cameraInfoTopicName>
-    <depthImageTopicName>/cam/depth/image_raw</depthImageTopicName>
-    <depthImageInfoTopicName>/cam/depth/camera_info</depthImageInfoTopicName>
-    <pointCloudTopicName>/cam/depth/points</pointCloudTopicName>
-    <frameName>${frame_name}</frameName>
-    <pointCloudCutoff>0.5</pointCloudCutoff>
-    <distortionK1>0.00000001</distortionK1>
-    <distortionK2>0.00000001</distortionK2>
-    <distortionK3>0.00000001</distortionK3>
-    <distortionT1>0.00000001</distortionT1>
-    <distortionT2>0.00000001</distortionT2>
-    <CxPrime>0</CxPrime>
-    <Cx>0</Cx>
-    <Cy>0</Cy>
-    <focalLength>0</focalLength>
-    <hackBaseline>0</hackBaseline>
-  </plugin>
--->
-   
-   
-
-
-
-      <model name='laser'>
-   <pose>0.2 0 0.3 0 0 0</pose>
-   <link name='link_laser'>
-     <inertial>
-       <mass>0.1</mass>
-       <inertia>
-         <ixx>1</ixx>
-         <ixy>0</ixy>
-         <ixz>0</ixz>
-         <iyy>1</iyy>
-         <iyz>0</iyz>
-         <izz>1</izz>
-       </inertia>
-     </inertial>
-     <collision name='collision'>
-       <geometry>
-         <box>
-            <size>0.1 0.1 0.1</size>
-         </box>
-       </geometry>
-       <max_contacts>10</max_contacts>
-       <surface>
-         <contact>
-           <ode/>
-         </contact>
-         <bounce/>
-         <friction>
-           <ode/>
-         </friction>
-       </surface>
-     </collision>
-     <visual name='visual'>
-       <geometry>
-         <box>
-           <size>0.1 0.1 0.1</size>
-         </box>
-       </geometry>
-     </visual>
-    <sensor type="ray" name="laser">
-          <!-- Position the ray sensor based on the specification. Also rotate
-       it by 90 degrees around the X-axis so that the <horizontal> rays
-       become vertical -->
-        <pose>0 0 0 0 0</pose>
-
-        <!-- Enable visualization to see the rays in the GUI -->
-      <visualize>true</visualize>
-
-       <!-- Set the update rate of the sensor -->
-      <update_rate>30</update_rate>
-
-      <ray>
-
-          <!-- The scan element contains the horizontal and vertical beams.
-              We are leaving out the vertical beams for this tutorial. -->
-          <scan>
-
-            <!-- The horizontal beams -->
-            <horizontal>
-              <!-- The velodyne has 32 beams(samples) -->
-              <samples>32</samples>
-
-              <!-- Resolution is multiplied by samples to determine number of
-                  simulated beams vs interpolated beams. See:
-                  http://sdformat.org/spec?ver=1.6&elem=sensor#horizontal_resolution
-                  -->
-              <resolution>6</resolution>
-
-              <!-- Minimum angle in radians -->
-              <min_angle>-0.53529248</min_angle>
-
-              <!-- Maximum angle in radians -->
-              <max_angle>0.18622663</max_angle>
-            </horizontal>
-          </scan>
-
-          <!-- Range defines characteristics of an individual beam -->
-          <range>
-            <!-- Minimum distance of the beam -->
-            <min>0.05</min>
-
-            <!-- Maximum distance of the beam -->
-            <max>3</max>
-
-            <!-- Linear resolution of the beam -->
-            <resolution>0.02</resolution>
-          </range>
-      </ray>
-       <plugin name="hokuyo_node" filename="libgazebo_ros_laser.so">
-          <topicName>/scan</topicName>
-          <frameName>base_laser_link</frameName>
-        </plugin>
-
-    </sensor>
-     <self_collide>0</self_collide>
-     <kinematic>0</kinematic>
-     <gravity>1</gravity>
-   </link>
- </model>
-
-    <joint name="hokuyo_joint" type="revolute">
-      <child>laser::link_laser</child>
-      <parent>chassis</parent>
-      <axis>
-        <xyz>0 0 0</xyz>
-        <limit>
-          <upper>0</upper>
-          <lower>0</lower>
-        </limit>
-      </axis>
-    </joint>
-    
-
-    <model name="kinect">
-    <pose>0 0 0.036 0 0 0</pose>
+      <!--<model name="kinect">
+    <pose>0.2 0 0.4 0 0 0</pose>
     <link name="base">
       <inertial>
         <mass>0.1</mass>
@@ -630,7 +386,89 @@
         </plugin>
       </sensor>
     </link>
+  </model>-->
+
+  <model name="laser">
+    <pose>0.1 0 0.4 0 0 0</pose>
+    <link name="base">
+      <inertial>
+        <mass>0.1</mass>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.073000 0.276000 0.072000</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://hokuyo/meshes/hokuyo.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <sensor type="gpu_ray" name="head_hokuyo_sensor">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <update_rate>20</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>180</samples>
+              <resolution>1</resolution>
+              <min_angle>-1.570796</min_angle>
+              <max_angle>1.570796</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.10</min>
+            <max>8.0</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <!-- Noise parameters based on published spec for Hokuyo laser
+                achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+                stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+                reading. -->
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+        <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
+          <topicName>/laser/scan</topicName>
+          <frameName>hokuyo_link</frameName>
+        </plugin>
+      </sensor>
+    </link>
   </model>
+
+  <joint name="hokuyo_joint" type="revolute">
+      <pose>0 0 0 0 0 0</pose>
+        <child>laser::hokuyo_link</child>
+        <parent>chassis</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+          </limit>
+        </axis>
+  </joint>
+
+   <!--<joint name='kinect_camera' type="revolute">
+        <pose>0 0 0.03 0 -0 0</pose>
+        <child>kinect::base</child>
+        <parent>chassis</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+        </axis>
+      </joint>-->
 
 
     <!-- <plugin name="hokuyo_node" filename="libgazebo_ros_laser.so">
