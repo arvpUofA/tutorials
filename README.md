@@ -1,18 +1,17 @@
-## Using ROS with Gazebo Simulator 
+## Using ROS with Gazebo Simulator Part 2
 
 Presentation: https://docs.google.com/presentation/d/1sLNUqFyN1WcnksPeObNLntVeC7U2imrrR01AVJhllqs/edit?usp=sharing
 
 ### Part 1 - Setup
-- Create a catkin workspace: http://wiki.ros.org/catkin/Tutorials/create_a_workspace, or skip if you already have one 
-- Add package under src folder in catkin workspace: `git clone -b ros-edmonton-dec https://github.com/arvpUofA/tutorials.git`
+- Add package under src folder in catkin workspace: `git clone -b ros-edmonton-jan https://github.com/arvpUofA/tutorials.git`
 - Run `catkin_make` from root of catkin workspace
-- Start ROS master in terminal: `roscore`
-- In new terminal move to pioneer_bot package directory and start simulator: `rosrun gazebo_ros gazebo -file model/pioneer2dx_ros.world`
-- View topics being published by differential drive plugin: `rostopic list`
-- Watch odometry topic: `rostopic echo /pioneer2dx/odom`
-- Control robot by publishing to `/pioneer2dx/cmd_vel` topic: `rosrun pioneer_bot teleop_key.py`
+- TODO: Copy model file to ~/.gazebo/models 
 
-### Part 2 - Subscriber Callback
+### Part 2 - Adding camera to world model
+- TODO
+
+### Part 3 - OpenCV 
+- TODO: replace everything below with OpenCV content 
 - Open up the python script `scripts/pioneer_bot.py`
 - Add a publisher and subscriber to PioneerBot constructor:
 ``` python
@@ -30,32 +29,3 @@ Presentation: https://docs.google.com/presentation/d/1sLNUqFyN1WcnksPeObNLntVeC7
   geometry_msgs/PoseWithCovariance pose
   geometry_msgs/TwistWithCovariance twist
 ```
-- Update robot position and orientation when Odometry Subscriber callback is called:
-```python
-  orientation = data.pose.pose.orientation
-  position = data.pose.pose.position
-
-  self.x = position.x
-  self.y = position.y
-
-  quaternion = (orientation.x,orientation.y,orientation.z,orientation.w)
-  euler = tf.transformations.euler_from_quaternion(quaternion)
-  self.orientation = euler[2] if euler[2] > 0 else euler[2] + 2*math.pi
-```
-### Part 3 - Move to target function
-- Add PD controller code to follow path:
-```python
-  rx =  self.x - p1[0]
-  ry =  self.y - p1[1]
-  
-  u  = (rx * dx + ry * dy) / (dx * dx + dy * dy)
-  error = (ry * dx - rx * dy) / math.sqrt(dx * dx + dy * dy)
-
-  diff_error = error - last_error
-  last_error = error
-
-  steer = - error * self.P - diff_error * self.D
-  # Note with Gazebo 2, a bug in the ROS plugin means you have to pass the negative of the steering commands
-```
-- Test drive_to_goal funtion in main 
-- Play with P and D constants until you find something that works 
