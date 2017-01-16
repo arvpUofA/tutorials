@@ -15,8 +15,10 @@ class PioneerBot:
     def __init__(self):
 
         self.odometry_sub = rospy.Subscriber("pioneer2dx/odom", Odometry, self.odometry_callback)
-        
         self.velocity_pub = rospy.Publisher("pioneer2dx/cmd_vel", Twist, queue_size=1)
+        self.image_sub = rospy.Subscriber("/camera/rgb/image_raw", Image, self.image_callback)
+        self.image_pub = rospy.Publisher("/debug_image", Image, queue_size=1)
+        self.bridge = CvBridge()
         
         self.x = 0
         self.y = 0
@@ -26,9 +28,6 @@ class PioneerBot:
         self.D = 25
         self.first = True
 
-    def image_callback(self,data):
-        print("image")
-    
     def odometry_callback(self,data):
         if(self.first):
             self.first = False
@@ -87,14 +86,6 @@ class PioneerBot:
     def stop(self):
         msg = Twist()
         self.velocity_pub.publish(msg)
-
-class TrackBall:
-
-    def __init__(self):
-        self.image_sub = rospy.Subscriber("/camera/rgb/image_raw", Image, self.image_callback)
-        self.image_pub = rospy.Publisher("/debug_image", Image, queue_size=1)
-        self.velocity_pub = rospy.Publisher("pioneer2dx/cmd_vel", Twist, queue_size=1)
-        self.bridge = CvBridge()
     
     def image_callback(self, image):
         try:
@@ -104,37 +95,26 @@ class TrackBall:
 
         #hsv = cv2.cvtColor(cv_image,cv2.COLOR_RGB2HSV)
         #thres = cv2.inRange(hsv,np.array([0,0,0]),np.array([30,255,255]))
-        (rows,cols,channels) = cv_image.shape
-        gray_img = cv2.cvtColor(cv_image,cv2.COLOR_RGB2GRAY)
-        circles = cv2.HoughCircles(gray_img,cv2.HOUGH_GRADIENT,1,20,
-                            param1=50,param2=30,minRadius=0,maxRadius=0)
-        
-        if(circles is not None):
-            circles = np.uint16(np.around(circles))
-            for i in circles[0,:]:
-                # draw the outer circle
-                cv2.circle(cv_image,(i[0],i[1]),i[2],(0,255,0),2)
-                self.move((rows/2-i[0]) * 0.01, 1)
-                break
-        else:
-            self.move(1, 0)
 
-
-        (rows,cols,channels) = cv_image.shape
-        #cv2.imshow("Image window", cv_image)
+        cv_image = self.track_ball(cv_image)
 
         try:
             self.image_pub.publish(self.bridge.cv2_to_imgmsg(cv_image, "bgr8"))
         except CvBridgeError as e:
             print(e)
-        
     
-    def move(self, steer, speed):
-        msg = Twist()
-        msg.linear.x = speed
-        msg.angular.z = steer
-        self.velocity_pub.publish(msg)
+    def track_ball(self, image):
+        (rows,cols,channels) = image.shape
+        ###Code 1 goes here
 
+        ####
+
+        ####Code 2 goes here
+        
+        ####
+        
+        return image
+         
 
 
 def main():
@@ -146,13 +126,10 @@ def main():
     # run simultaneously.
     rospy.init_node('pioneer_bot', anonymous=True)
     robot = PioneerBot()
-    tracking = TrackBall()
 
     #wait for first odometry callback
     while(robot.first):
         pass
-    
-
 
     #stops node from exiting
     rospy.spin()

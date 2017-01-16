@@ -64,7 +64,7 @@
       </link>
     </model>
       <model name="target_ball">
-        <pose>1 0 1 0 0 0</pose>
+        <pose>0 4 1 0 0 0</pose>
         <link name="main">
           <visual name="ball_visual">
             <pose>0 0 0 0 0 0</pose>
@@ -361,17 +361,8 @@
       <pose>0 0 0 0 -0 0</pose>
       <static>0</static>
 
-      <!--
-      <include>
-          <uri>model://monocular_camera</uri>
-          <pose>0.2 0 0.2 0 0 0</pose>
-      </include>
-      <joint name="camera_joint" type="fixed">
-          <pose>0 0 0 0 0 0</pose>
-            <child>monocular_camera::link</child>
-            <parent>chassis</parent>
-      </joint> 
-      -->
+    
+     
 
     </model>
     <state world_name='default'>
