@@ -31,7 +31,7 @@
 
 ### Part 3 - OpenCV 
 - Open up the python script `scripts/pioneer_bot.py`
-- Code1: Convert image to grayscale and use OpenCV HoughCircles function to find circles
+- Code1: Convert image to grayscale and use OpenCV HoughCircles function to find circles, http://docs.opencv.org/2.4/modules/imgproc/doc/feature_detection.html?highlight=houghcircles#cv2.HoughCircles
 ``` python
   gray_img = cv2.cvtColor(image,cv2.COLOR_RGB2GRAY)
   circles = cv2.HoughCircles(gray_img,cv2.HOUGH_GRADIENT,1,20,
