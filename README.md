@@ -17,11 +17,18 @@
 ```
 - Add joint to connect pioneer_bot chassis to the camera
 ``` xml
-  <joint name="camera_joint" type="fixed">
-    <pose>0 0 0 0 0 0</pose>
-    <child>monocular_camera::link</child>
-    <parent>chassis</parent>
-  </joint> 
+      <joint name="camera_joint" type="revolute">
+        <pose>0 0 0 0 0 0</pose>
+    	<axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <upper>0</upper>
+          <lower>0</lower>
+        </limit>
+      </axis>
+        <child>monocular_camera::link</child>
+        <parent>chassis</parent>
+      </joint>
 ```
 - See documation on sdf format for joint: http://sdformat.org/spec?elem=joint
 - Start gazebo from pioneer_bot package directory: `rosrun gazebo_ros gazebo model/pioneer2dx_ros.world`
