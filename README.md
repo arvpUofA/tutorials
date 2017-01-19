@@ -57,7 +57,6 @@
     	        # draw the outer circle
     		    cv2.circle(image,(i[0],i[1]),i[2],(0,255,0),2)
     		    self.move((rows/2-i[0]) * 0.01, 1)
-            #print(i[2])
     		    break
        else:
             if (self.done == False):
