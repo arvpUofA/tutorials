@@ -129,7 +129,7 @@ class PioneerBot:
                     print(i[2])
     		    break
 	else:
-	    if (self.done == False):
+	    if (self.done = False):
     	        self.move(1, 0)
 
         ####
