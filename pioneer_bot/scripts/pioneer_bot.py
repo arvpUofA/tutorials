@@ -106,6 +106,11 @@ class PioneerBot:
 
     def track_ball(self, image):
         (rows,cols,channels) = image.shape
+	
+        hsv_img = cv2.cvtColor(image,cv2.COLOR_RGB2HSV)
+        thres = cv2.inRange(hsv_img,np.array([0,0,0]),np.array([30,255,255]))
+        imageSel = cv2.bitwise_and(image,image,mask = thres)
+	
         ###Code 1 goes here
 
         ####
