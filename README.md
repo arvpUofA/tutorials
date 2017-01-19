@@ -55,6 +55,5 @@
 	else:
 	    if (self.done == False):
     	        self.move(1, 0)
-        
 ```
 - Run node: `rosrun pioneer_bot pioneer_bot`
