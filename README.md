@@ -44,8 +44,8 @@
     	    circles = np.uint16(np.around(circles))
     	    for i in circles[0,:]:
                     if(i[2]>80):
-		       self.done = True
-		       self.move(0, 0)
+         	       self.done = True
+         	       self.move(0, 0)
                        break
     	        # draw the outer circle
     		    cv2.circle(image,(i[0],i[1]),i[2],(0,255,0),2)
