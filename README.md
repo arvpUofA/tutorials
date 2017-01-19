@@ -34,8 +34,8 @@
 - Code1: Convert image to grayscale and use OpenCV HoughCircles function to find circles, http://docs.opencv.org/2.4/modules/imgproc/doc/feature_detection.html?highlight=houghcircles#cv2.HoughCircles
 ``` python
   gray_img = cv2.cvtColor(image,cv2.COLOR_RGB2GRAY)
-  circles = cv2.HoughCircles(gray_img,cv2.HOUGH_GRADIENT,1,20,
-                            param1=50,param2=30,minRadius=0,maxRadius=0.3)
+  circles = cv2.HoughCircles(gray_img,cv2.cv.CV_HOUGH_GRADIENT,1,20,
+                            param1=50,param2=30,minRadius=0,maxRadius=0)
     
 ```
 - Code2: If a circle is found move towards it
