@@ -27,6 +27,7 @@ class PioneerBot:
         self.P = 2
         self.D = 25
         self.first = True
+        self.done = False
 
     def odometry_callback(self,data):
         if(self.first):
@@ -89,32 +90,29 @@ class PioneerBot:
     
     def image_callback(self, image):
         try:
-            cv_image = self.bridge.imgmsg_to_cv2(image, "bgr8")
+            cv_image = self.bridge.imgmsg_to_cv2(image, "rgb8")
         except CvBridgeError as e:
             print(e)
-
-        #hsv = cv2.cvtColor(cv_image,cv2.COLOR_RGB2HSV)
-        #thres = cv2.inRange(hsv,np.array([0,0,0]),np.array([30,255,255]))
 
         cv_image = self.track_ball(cv_image)
 
         try:
-            self.image_pub.publish(self.bridge.cv2_to_imgmsg(cv_image, "bgr8"))
+            self.image_pub.publish(self.bridge.cv2_to_imgmsg(cv_image, "rgb8"))
         except CvBridgeError as e:
             print(e)
     
     def track_ball(self, image):
         (rows,cols,channels) = image.shape
         
-        hsv_img = cv2.cvtColor(image,cv2.COLOR_RGB2HSV)
-        thres = cv2.inRange(hsv_img,np.array([0,0,0]),np.array([30,255,255]))
-        imageSel = cv2.bitwise_and(image,image,mask = thres)
-        
         ###Code 1 goes here
 
         ####
 
         ####Code 2 goes here
+        
+        ####
+        
+        ####Code 3 goes here
         
         ####
         
