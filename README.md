@@ -2,7 +2,6 @@
 
 ### Part 1 - Setup
 - Add package under src folder in catkin workspace: `git clone -b ros-edmonton-jan https://github.com/arvpUofA/tutorials.git`
-- Run `catkin_make` from root of catkin workspace
 - `source devel/setup.bash`
 - Copy model file from pioneer_bot package to gazebo models folder: `cp -rf model/monocular_camera ~/.gazebo/models`
 
@@ -24,6 +23,7 @@
   </joint> 
 ```
 - See documation on sdf format for joint: http://sdformat.org/spec?elem=joint
+- Start ros master `roscore`
 - Start gazebo from pioneer_bot package directory: `rosrun gazebo_ros gazebo model/pioneer2dx_ros.world`
 - Start rqt and open image view plugin: `rqt` select /camera/rgb/image_raw topic
 
@@ -60,5 +60,4 @@ if(circles is not None):
         self.move(1, 0)
         
 ```
-- Star ros master `roscore`
 - Run node: `rosrun pioneer_bot pioneer_bot`
