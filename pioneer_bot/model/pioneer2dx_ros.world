@@ -436,18 +436,6 @@
       </plugin>
       <pose>0 0 0 0 -0 0</pose>
       <static>0</static>
-
-        <include>
-    <uri>model://monocular_camera</uri>
-    <pose>0.2 0 0.2 0 0 0</pose>
-  </include>
-
-    <joint name="camera_joint" type="fixed">
-    <pose>0 0 0 0 0 0</pose>
-    <child>monocular_camera::link</child>
-    <parent>chassis</parent>
-  </joint> 
-
     
      
 
