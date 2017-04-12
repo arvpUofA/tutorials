@@ -436,8 +436,8 @@
       </plugin>
       <pose>0 0 0 0 -0 0</pose>
       <static>0</static>
-    
-     
+
+
 
     </model>
     <state world_name='default'>
@@ -456,6 +456,14 @@
       <model name='pioneer2dx'>
         <pose>-0.103826 0.027961 2e-06 -2e-06 -8e-06 -0.094162</pose>
         <link name='chassis'>
+          <pose>-0.103827 0.027961 0.160002 -2e-06 -8e-06 -0.094162</pose>
+          <velocity>
+            -0.000797 0.002229 0.003363 -0.024657 -0.007301 0.0023
+          </velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='hokuyo_link'>
           <pose>-0.103827 0.027961 0.160002 -2e-06 -8e-06 -0.094162</pose>
           <velocity>
             -0.000797 0.002229 0.003363 -0.024657 -0.007301 0.0023

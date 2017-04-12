@@ -1,5 +1,10 @@
 ## Using ROS Gazebo Camera Plugin
 
+
+- http://wiki.ros.org/gmapping
+- sudo apt-get install ros-kinetic-gmapping
+- rosrun gmapping slam_gmapping scan:=/laser/scan _odom_frame:=pioneer2dx/odom _base_frame:=pioneer2dx/chassis
+
 ### Part 1 - Setup
 - Add package under src folder in catkin workspace: `git clone -b ros-edmonton-jan https://github.com/arvpUofA/tutorials.git`
 - Run `catkin_make` from root of catkin workspace

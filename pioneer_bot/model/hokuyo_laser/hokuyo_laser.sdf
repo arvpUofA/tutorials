@@ -2,7 +2,7 @@
 <gazebo version="1.2">
 <model name="hokuyo_laser">
     <pose>0.1 0 0.4 0 0 0</pose>
-    <link name="base">
+    <link name="hokuyo_link">
       <inertial>
         <mass>0.1</mass>
       </inertial>
