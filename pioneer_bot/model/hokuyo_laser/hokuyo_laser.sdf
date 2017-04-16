@@ -2,7 +2,7 @@
 <gazebo version="1.2">
 <model name="hokuyo_laser">
     <pose>0.1 0 0.4 0 0 0</pose>
-    <link name="hokuyo_link">
+    <link name="hokuyo_laser::hokuyo_link">
       <inertial>
         <mass>0.1</mass>
       </inertial>
@@ -35,7 +35,7 @@
           </scan>
           <range>
             <min>0.10</min>
-            <max>8.0</max>
+            <max>8</max>
             <resolution>0.01</resolution>
           </range>
           <noise>
@@ -50,7 +50,7 @@
         </ray>
         <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
           <topicName>/laser/scan</topicName>
-          <frameName>hokuyo_link</frameName>
+          <frameName>/pioneer2dx/odom</frameName>
         </plugin>
       </sensor>
     </link>

@@ -3,7 +3,11 @@
 
 - http://wiki.ros.org/gmapping
 - sudo apt-get install ros-kinetic-gmapping
-- rosrun gmapping slam_gmapping scan:=/laser/scan _odom_frame:=pioneer2dx/odom _base_frame:=pioneer2dx/chassis
+- rosrun gmapping slam_gmapping scan:=/laser/scan _odom_frame:=pioneer2dx/odom _base_frame:=pioneer2dx/chassis _linearUpdate:=0.0 _angularUpdate:=0.0
+TODO:
+- Remake world without pioneerbot
+- Setup laser params 
+- Setup gmapping launch file 
 
 ### Part 1 - Setup
 - Add package under src folder in catkin workspace: `git clone -b ros-edmonton-jan https://github.com/arvpUofA/tutorials.git`

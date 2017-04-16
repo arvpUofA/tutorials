@@ -590,7 +590,7 @@
             <frameName>/pioneer2dx/odom</frameName>
           </plugin>
         </sensor>
-        <pose frame=''>0.2 0 0.2 0 -0 0</pose>
+        <pose frame=''>0.0 0 0.3 0 -0 0</pose>
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
         <gravity>1</gravity>
@@ -1004,12 +1004,6 @@
           <velocity>1.3e-05 0.000196 -0.000609 -0.000252 0.003098 0.000347</velocity>
           <acceleration>0.050634 -0.028805 -7.18294 2.61714 -1.4866 -3.09337</acceleration>
           <wrench>0.287094 -0.163327 -40.7273 0 -0 0</wrench>
-        </link>
-        <link name='hokuyo_laser::hokuyo_link'>
-          <pose frame=''>-0.086777 0.206945 0.200001 6e-06 -2e-06 0.125554</pose>
-          <velocity>0.000127 0.000263 -0.001225 -0.000257 0.003077 0.00031</velocity>
-          <acceleration>0.223908 -0.024717 -8.08237 2.53664 -1.33096 3.0997</acceleration>
-          <wrench>0.022391 -0.002472 -0.808237 0 -0 0</wrench>
         </link>
         <link name='left_wheel'>
           <pose frame=''>-0.207277 0.363085 0.110001 1.57016 1.44014 -3.01678</pose>
