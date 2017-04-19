@@ -34,4 +34,4 @@ Turtlebot Gazebo tutorial this is based off of: http://wiki.ros.org/turtlebot_ga
 - Kill all processes and restart gazebo 
 - Start amcl node: `roslaunch turtlebot_tutorials amcl_demo.launch map_file:=<path to map file you made in Part 3>`
 - Start rviz again: `roslaunch turtlebot_rviz_launchers view_navigation.launch`
-- Follow section `2.3 RViz` from http://wiki.ros.org/turtlebot_navigation/Tutorials/Autonomously%20navigate%20in%20a%20known%20map
+- To send a navigation goal for the turtlebot follow section `2.3 RViz` from http://wiki.ros.org/turtlebot_navigation/Tutorials/Autonomously%20navigate%20in%20a%20known%20map
