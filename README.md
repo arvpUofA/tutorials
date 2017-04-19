@@ -7,7 +7,8 @@ Turtlebot Gazebo tutorial this is based off of: http://wiki.ros.org/turtlebot_ga
 - Intall Turtlebot simulator package: `sudo apt-get install ros-<YOUR VERSION OF ROS>-turtlebot-simulator`
 - Install RViz launchers for convenience: `sudo apt-get install ros-indigo-turtlebot-apps ros-indigo-turtlebot-rviz-launchers`
 
-### Part 2 - Launch Gazebo 
+### Part 2 - Launch Gazebo
+- #TODO: Verify if `rosparam set /use_sim_time true` is necessary 
 - `roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=<path to catkin workspace>/catkin_ws/src/tutorials/turtlebot_tutorials/worlds/corridors.world`
   - http://wiki.ros.org/turtlebot_gazebo/Tutorials/indigo/Make%20a%20map%20and%20navigate%20with%20it
 - Launch teleop node: `roslaunch turtlebot_teleop keyboard_teleop.launch`
@@ -28,7 +29,7 @@ Turtlebot Gazebo tutorial this is based off of: http://wiki.ros.org/turtlebot_ga
 - https://github.com/turtlebot/turtlebot_apps/tree/indigo/turtlebot_navigation/launch/includes/gmapping
 
 ### Part 4 - Navigate Map
-#TODO
-- `roslaunch turtlebot_gazebo amcl_demo.launch map_file:=<full path to your map YAML file>`
-
-
+- Kill all processes and restart gazebo 
+- Start amcl node: `roslaunch turtlebot_tutorials amcl_demo.launch map_file:=<path to map file you made in Part 3>`
+- Start rviz again: `roslaunch turtlebot_rviz_launchers view_navigation.launch`
+- Follow step `2.3.3 Send Navigation Goal` from http://wiki.ros.org/turtlebot_navigation/Tutorials/Autonomously%20navigate%20in%20a%20known%20map
