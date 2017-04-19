@@ -2,6 +2,8 @@
 
 Turtlebot Gazebo tutorial this is based off of: http://wiki.ros.org/turtlebot_gazebo/Tutorials/indigo/Make%20a%20map%20and%20navigate%20with%20it
 
+##TODO: Add some images to clarify some of the steps
+
 ### Part 1 - Setup
 - Install Gmapping package: `sudo apt-get install ros-<YOUR VERSION OF ROS>-gmapping`
 - Intall Turtlebot simulator package: `sudo apt-get install ros-<YOUR VERSION OF ROS>-turtlebot-simulator`
