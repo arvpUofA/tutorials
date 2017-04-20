@@ -11,7 +11,7 @@ We will be following this tutorial but using our own local world file and copies
 
 ### Part 2 - Launch Gazebo
 - Launch Gazebo:
-  -`roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=<absolute path to worlds directory>/corridors.world`
+  - `roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=<absolute path to worlds directory>/corridors.world`
   - If using Ubuntu 14.04 use corridors1404.world, or build your own model
 - Launch teleop node: `roslaunch turtlebot_teleop keyboard_teleop.launch` and check and see if you can navigate the map
 ![Alt text](turtlebot_tutorials/pictures/gazebo_bringup.png?raw=true "Gazebo turtlebot bringup")
