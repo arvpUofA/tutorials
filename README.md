@@ -3,7 +3,7 @@
 We will be following this tutorial but using our own local world file and copies of some of the launch files: http://wiki.ros.org/turtlebot_gazebo/Tutorials/indigo/Make%20a%20map%20and%20navigate%20with%20it
 
 ### Part 1 - Setup
-- git clone -b april-2017-turtlebot https://github.com/arvpUofA/tutorials.git
+- Clone Repo: `git clone -b april-2017-turtlebot https://github.com/arvpUofA/tutorials.git`
 - Install Gmapping package: `sudo apt-get install ros-<YOUR VERSION OF ROS>-gmapping`
 - Intall Turtlebot simulator package: `sudo apt-get install ros-<YOUR VERSION OF ROS>-turtlebot-simulator`
   - If having issues with Gazebo version: http://answers.ros.org/question/211291/ros-indigo-re-installation-problem/
