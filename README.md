@@ -17,7 +17,10 @@ We use a simple state machine that handles transitions between tasks.
 **Todo**  
 Code has provided transitions between Searching to Grabbing, Grabbing to Dropping, and Dropping to Back to Searching. Today's tryout is to simply add one more state between Grabbing and Dropping, that is, to move to a different place. Feel free to name your state and design your own state I/O.  
 
-1. Download the code from github repo  
-2. Open up your favourite editor  
-3. Read over and understand the code  
-4. Here we go, start your building.
+1. Download the code from github repo 
+2. Open up your terminal  
+3. Go to your catkin_ws and start `roscore`  
+4. Run the code using `rosrun pioneer_bot state.py`  
+5. Open up your favourite editor  
+6. Read over and understand the code  
+7. Here we go, start your building.
