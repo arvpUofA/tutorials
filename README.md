@@ -15,7 +15,11 @@ We use a simple state machine that handles transitions between tasks.
 - Back to Searching  
 
 **Todo**  
-Code has provided transitions between Searching to Grabbing, Grabbing to Dropping, and Dropping to Back to Searching. Today's tryout is to simply add one more state between Grabbing and Dropping, that is, to move to a different place. Feel free to name your state and design your own state I/O.  
+Code has provided transitions between Searching to Grabbing, Grabbing to Dropping, and Dropping to Back to Searching. Today's tryout is to simply add one more state between Grabbing and Dropping, that is, to move to a different place.  
+  
+But before that, if you run the code, you will find the robot is doing the tasks over and over again. Our robot gets tired(wait, a robot gets tired?), let's try give it a break but changing the final state transition back to its initial state.  After that, you can start giving it a new state, or make it back to work loop maybe.  
+  
+Feel free to name your state and design your own state I/O.  
 
 1. Download the code from github repo 
 2. Open up your terminal  
