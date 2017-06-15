@@ -1,0 +1,4 @@
+<!-- This is to launch your local scripts that you completed -->
+<launch>
+    <node name="state_machine" pkg="pioneer_bot" type="state.py" output="screen" required="true" />
+</launch>
