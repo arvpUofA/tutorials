@@ -4,9 +4,9 @@ We will be following this tutorial but using our own local usb camera by default
 http://wiki.ros.org/ar_track_alvar
 
 ### Part 1 - Setup
-- `cd ~/catkin_ws`
-- `source devel/setup.bash`
-- `cd ~/catkin_ws/src`
+- Go to your catkin workspace: `cd ~/catkin_ws`
+- Setup your bash path: `source devel/setup.bash`
+- Go to your src folder: `cd ~/catkin_ws/src`
 - Clone Repo: `git clone -b oct-2017-ARTags https://github.com/arvpUofA/tutorials.git`
 - Install usb-cam package: `sudo apt-get install ros-<YOUR VERSION OF ROS>-usb-cam`
 - Intall ar-track-alvar package: `sudo apt-get install ros-<YOUR VERSION OF ROS>-ar-track-alvar`
@@ -25,10 +25,12 @@ http://wiki.ros.org/ar_track_alvar
 ![Alt text](ar_tag/pictures/mono1.png?raw=true "Camera Calibration")
 
 ### Part 4 - Launch ar_track_alvar
-- Now we will use the acml package (http://wiki.ros.org/amcl) which uses a particle filter for localization within a known map. In addition, the move_base package will be used (http://wiki.ros.org/move_base). The move_base node can be given a goal and will attempt to reach it using the ROS navigation stack. 
-- To start you need to kill all processes from the previous parts and restart gazebo 
-- Start amcl and move_base nodes: `roslaunch turtlebot_tutorials amcl_demo.launch map_file:=<absolute path to map file you made in Part 3>`
-- Start rviz again: `roslaunch turtlebot_rviz_launchers view_navigation.launch`
-- To send a navigation goal for the turtlebot follow section `2.3 RViz` from: http://wiki.ros.org/turtlebot_navigation/Tutorials/Autonomously%20navigate%20in%20a%20known%20map
-- If your robot is not moving even after you send it a navigation goal, make sure you have shutdown the teleop node
-![Alt text](turtlebot_tutorials/pictures/rviz3.png?raw=true "Rviz acml in action")
+- Now we will will modify our launch file to accept our new rostopics we have just setup, `/usb_cam/image_raw`, `/usb_cam/camera_info`, `/usb_cam`
+- To start your launch file, `roslaunch tutorials indiv_no_kinetic` 
+- Now, in a new terminal, ensure your node is working and ARTag positions are being published `rostopic echo /ar_pose_marker`
+
+### Part 5 - Take home assignment, tf broadcaster
+- Start rviz: `rviz`
+- Add a image node and select your `/usb_cam/image_raw` topic and view your camera feed.
+- Add a Marker
+- Now go to http://wiki.ros.org/tf/Tutorials/Writing%20a%20tf%20broadcaster%20%28Python%29 and setup a tf broadcaster to map your published coordinate space to the camera image.
