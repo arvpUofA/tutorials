@@ -27,7 +27,7 @@ http://wiki.ros.org/ar_track_alvar
 
 ### Part 4 - Launch ar_track_alvar
 - Now we will will modify our launch file to accept our new rostopics we have just setup, `/usb_cam/image_raw`, `/usb_cam/camera_info`, `/usb_cam`
-- To start your launch file, `roslaunch tutorials indiv_no_kinetic` 
+- To start your launch file, `roslaunch ~/catkin_ws/tutorials/ar_tag/launch/indiv_no_kinetic` 
 - Now, in a new terminal, ensure your node is working and ARTag positions are being published `rostopic echo /ar_pose_marker`
 
 ### Part 5 - Take home assignment, tf broadcaster
