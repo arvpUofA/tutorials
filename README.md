@@ -4,6 +4,7 @@ We will be following this tutorial but using our own local usb camera by default
 http://wiki.ros.org/ar_track_alvar
 
 ### Part 1 - Setup
+- Make a catkin_ws, if you do not have one: http://wiki.ros.org/catkin/Tutorials/create_a_workspace
 - Go to your catkin workspace: `cd ~/catkin_ws`
 - Setup your bash path: `source devel/setup.bash`
 - Go to your src folder: `cd ~/catkin_ws/src`
