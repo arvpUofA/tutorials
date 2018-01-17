@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot name="hercules" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="chassis_length" value="0.206" />
+  <xacro:property name="chassis_width" value="0.135" />
+  <xacro:property name="chassis_height" value="0.035" />
+
+  <xacro:property name="wheel_radius" value="0.0425" />
+  <xacro:property name="wheel_width" value="0.03" />
+
+  <xacro:property name="wheelbase" value="0.16" />
+  <xacro:property name="track" value="0.17" />
+  <xacro:property name="wheel_vertical_offset" value="0.0" />
+
+  <xacro:property name="PI" value="3.14159265359" />
+
+  <material name="black"><color rgba="0.15 0.15 0.15 1" /></material>
+
+  <!-- base_link link goes below -->
+
+  <!-- base_link link goes above -->
+
+  
+  <!-- wheels goes below -->
+   
+  <!-- wheel links goes above -->
+
+
+  <!-- Gazebo plugin for control using diff_drive_controller -->
+  
+  <!-- Gazebo -->
+
+</robot>

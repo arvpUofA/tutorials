@@ -1,0 +1,13 @@
+<launch>
+  <arg name="joy_dev" default="/dev/input/js1" />
+  <arg name="joystick" default="true" />
+  <rosparam command="load" file="$(find hercules_control)/config/teleop.yaml" />
+  <param name="joy_node/dev" value="$(arg joy_dev)" />
+  
+  <node pkg="joy" type="joy_node" name="joy_node" />
+
+  <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy">
+      <remap from="cmd_vel" to="/cmd_vel" />
+  </node>
+  
+</launch>

@@ -1,0 +1,197 @@
+ 
+
+  <xacro:wheel prefix="front_left">
+    <origin xyz="${wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+  </xacro:wheel>
+  <xacro:wheel prefix="front_right">
+    <origin xyz="${wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+  </xacro:wheel>
+  <xacro:wheel prefix="back_left">
+    <origin xyz="${-wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+  </xacro:wheel>
+  <xacro:wheel prefix="back_right">
+    <origin xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+  </xacro:wheel>
+
+  <!--<link name="front_right_wheel">
+    <visual>
+      <geometry>
+       
+        <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+      <material name="black" />
+    </collision>
+    <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.05"/>
+        <inertia
+          ixx="2.6326e-5" ixy="0" ixz="0"
+          iyy="2.6326e-5" iyz="0"
+          izz="4.5156e-5"/>
+    </inertial>
+  </link>
+
+  <gazebo reference="front_right_wheel">
+      <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <joint name="front_right_wheel_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="front_right_wheel"/>
+    <origin rpy="-1.5708 0 0" xyz="${wheelbase/2} ${-track/2} ${wheel_vertical_offset}"/>
+  </joint>
+
+  
+    <transmission name="front_right_wheel_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="front_right_wheel_joint">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="front_right_actuator">
+        <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+  <link name="front_left_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+      <material name="black" />
+    </collision>
+    <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.05"/>
+        <inertia
+          ixx="2.6326e-5" ixy="0" ixz="0"
+          iyy="2.6326e-5" iyz="0"
+          izz="4.5156e-5"/>
+    </inertial>
+  </link>
+
+  <gazebo reference="front_left_wheel">
+      <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <joint name="front_left_wheel_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="front_left_wheel"/>
+    <origin rpy="-1.5708 0 0" xyz="${wheelbase/2} ${track/2} ${wheel_vertical_offset}"/>
+  </joint>
+
+  
+    <transmission name="front_left_wheel_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="front_left_wheel_joint">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="front_left_actuator">
+        <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+  <link name="back_right_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+      <material name="black" />
+    </collision>
+    <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.05"/>
+        <inertia
+          ixx="2.6326e-5" ixy="0" ixz="0"
+          iyy="2.6326e-5" iyz="0"
+          izz="4.5156e-5"/>
+    </inertial>
+  </link>
+
+  <gazebo reference="back_right_wheel">
+      <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <joint name="back_right_wheel_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="back_right_wheel"/>
+    <origin rpy="-1.5708 0 0" xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}"/>
+  </joint>
+
+   
+    <transmission name="back_right_wheel_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="back_right_wheel_joint">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="back_right_actuator">
+        <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+  <link name="back_left_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+      </geometry>
+      <material name="black" />
+    </collision>
+    <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.05"/>
+        <inertia
+          ixx="2.6326e-5" ixy="0" ixz="0"
+          iyy="2.6326e-5" iyz="0"
+          izz="4.5156e-5"/>
+    </inertial>
+  </link>
+
+  <gazebo reference="back_left_wheel">
+      <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <joint name="back_left_wheel_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="back_left_wheel"/>
+    <origin rpy="-1.5708 0 0" xyz="${-wheelbase/2} ${track/2} ${wheel_vertical_offset}"/>
+  </joint>
+   
+    <transmission name="back_left_wheel_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="back_left_wheel_joint">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="back_left_actuator">
+        <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>-->
+
+  <!-- Bring in simulation data for Gazebo. -->
+  <xacro:include filename="$(find hercules_description)/urdf/hercules.gazebo" />

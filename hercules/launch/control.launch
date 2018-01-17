@@ -1,0 +1,11 @@
+<launch>
+  <rosparam command="load" file="$(find hercules)/config/control.yaml" />
+  
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        args="hercules_joint_publisher hercules_velocity_controller --shutdown-timeout 1" />
+
+  <node pkg="topic_tools" type="relay" name="cmd_vel_relay"
+        args="cmd_vel hercules_velocity_controller/cmd_vel" />
+</launch>
