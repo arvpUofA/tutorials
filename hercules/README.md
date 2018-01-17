@@ -1,4 +1,9 @@
 ## Simulating your own robot in Gazebo
+- We will publish control commands to the robot using the cmd_vel topic with geometry_msgs/Twist messages:
+`rosmsg show geometry_msgs/Twist`
+- Robot will report position using nav_msgs/Odometry messages:
+`rosmsg show nav_msgs/Odometry`
+
 ### Part 1 - Setup
 - Make a catkin_ws, if you do not have one: http://wiki.ros.org/catkin/Tutorials/create_a_workspace
 - Go to your catkin workspace: `cd ~/catkin_ws`
