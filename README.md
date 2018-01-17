@@ -1,6 +1,8 @@
 # tutorials
 Tutorials on using ROS 
 
+### Simulating custom robot in Gazebo: https://github.com/arvpUofA/tutorials/tree/jan-2018/hercules
+
 ### Camera Calibration and AR Tag Introduction: https://github.com/arvpUofA/tutorials/tree/oct-2017-ARTags
 
 ### Gazebo and differential drive robot: https://github.com/arvpUofA/tutorials/tree/ros-edmonton-dec
