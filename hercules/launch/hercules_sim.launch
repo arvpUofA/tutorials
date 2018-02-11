@@ -1,6 +1,4 @@
 <launch>
-  <!-- Load the TortoiseBot URDF model into the parameter server -->
-
   <param name="robot_description"
          command="$(find xacro)/xacro $(find hercules)/urdf/hercules.urdf.xacro
                     --inorder" />

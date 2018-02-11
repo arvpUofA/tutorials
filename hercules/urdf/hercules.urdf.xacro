@@ -17,17 +17,109 @@
   <material name="black"><color rgba="0.15 0.15 0.15 1" /></material>
 
   <!-- base_link link goes below -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
+      </geometry>
+      <material name="green">
+        <color rgba="0.22 1.0 0.07 1"/>
+      </material>
+    </visual>
+    <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
+        </geometry>
+    </collision>
 
+    <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="1.8"/>
+    <inertia
+        ixx="0.0029" ixy="0" ixz="0"
+        iyy="0.0065" iyz="0"
+        izz="0.0091"/>
+    </inertial>
+  </link>
   <!-- base_link link goes above -->
-
+  <gazebo reference="base_link">
+   <material>Gazebo/Green</material>
+  </gazebo>
   
   <!-- wheels goes below -->
-   
+  <xacro:macro name="wheel" params="prefix *joint_pose">
+    <!-- Link -->
+    <link name="${prefix}_wheel">
+      <visual>
+        <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <material name="black" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
+        <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        </collision>
+
+        <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.05"/>
+        <inertia
+            ixx="2.6326e-5" ixy="0" ixz="0"
+            iyy="4.5156e-5" iyz="0"
+            izz="2.6326e-5"/>
+        </inertial>
+    </link>
+
+    <!-- Joint -->
+    <joint name="${prefix}_wheel_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="${prefix}_wheel" />
+      <xacro:insert_block name="joint_pose" />
+      <axis xyz="0 1 0" />
+    </joint>
+
+    <gazebo reference="${prefix}_wheel">
+        <material>Gazebo/DarkGrey</material>
+    </gazebo>
+
+    <transmission name="${prefix}_wheel_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+    <joint name="${prefix}_wheel_joint">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="${prefix}_actuator">
+        <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    </transmission>
+    
+  </xacro:macro>
+
+  <xacro:wheel prefix="front_left">
+    <origin xyz="${wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+  </xacro:wheel>
+  <xacro:wheel prefix="front_right">
+    <origin xyz="${wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+  </xacro:wheel>
+  <xacro:wheel prefix="back_left">
+    <origin xyz="${-wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+  </xacro:wheel>
+  <xacro:wheel prefix="back_right">
+    <origin xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+  </xacro:wheel>
   <!-- wheel links goes above -->
 
 
   <!-- Gazebo plugin for control using diff_drive_controller -->
-  
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+       <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
   <!-- Gazebo -->
 
 </robot>
