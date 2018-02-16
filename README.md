@@ -1,5 +1,6 @@
 # tutorials
 Tutorials on using ROS 
+### ROS Navigation Stack: https://github.com/arvpUofA/tutorials/tree/feb-2018
 
 ### Simulating custom robot in Gazebo: https://github.com/arvpUofA/tutorials/tree/jan-2018/hercules
 
