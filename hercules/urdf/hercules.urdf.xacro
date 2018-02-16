@@ -35,11 +35,12 @@
 
     <inertial>
     <origin xyz="0 0 0" rpy="0 0 0"/>
-    <mass value="1.8"/>
-    <inertia
-        ixx="0.0029" ixy="0" ixz="0"
-        iyy="0.0065" iyz="0"
-        izz="0.0091"/>
+     <mass value="16.523"/>
+      <!-- Moments of inertia: ( chassis without wheels ) -->
+      <inertia
+        ixx="0.3136" ixy="-0.0008" ixz="0.0164"
+        iyy="0.3922" iyz="-0.0009"
+        izz="0.4485"/>
     </inertial>
   </link>
   <!-- base_link link goes above -->
@@ -47,6 +48,13 @@
    <material>Gazebo/Green</material>
   </gazebo>
   
+   <!-- https://answers.ros.org/question/151121/how-to-create-soft-objects-wheel-tires-in-gazebo/?answer=197040#post-id-197040 -->
+  <xacro:macro name="cylinder_inertia" params="m r h">
+    <inertia  ixx="${m*(3*r*r+h*h)/12}" ixy = "0" ixz = "0"
+            iyy="${m*(3*r*r+h*h)/12}" iyz = "0"
+            izz="${m*r*r/2}" /> 
+  </xacro:macro>
+
   <!-- wheels goes below -->
   <xacro:macro name="wheel" params="prefix *joint_pose">
     <!-- Link -->
@@ -67,12 +75,8 @@
 
         <inertial>
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <mass value="0.05"/>
-        <inertia
-            ixx="2.6326e-5" ixy="0" ixz="0"
-            iyy="4.5156e-5" iyz="0"
-            izz="2.6326e-5"/>
-        </inertial>
+        <mass value="0.5"/>
+        <cylinder_inertia  m="0.05" r="${wheel_radius}" h="${wheel_width}" />
     </link>
 
     <!-- Joint -->
@@ -114,12 +118,22 @@
   <!-- wheel links goes above -->
 
 
+  <!-- laser link and joint goes below -->
+  
+  <!-- laser link and joint goes above -->
+
+
   <!-- Gazebo plugin for control using diff_drive_controller -->
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
        <robotNamespace>/</robotNamespace>
     </plugin>
   </gazebo>
+  <!-- Gazebo -->
+
+
+  <!-- Gazebo plugin for laser scanner -->
+
   <!-- Gazebo -->
 
 </robot>

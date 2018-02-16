@@ -11,12 +11,13 @@ hercules_velocity_controller:
   twist_covariance_diagonal: [0.001, 0.001, 0.001, 1000000.0, 1000000.0, 0.03]
   cmd_vel_timeout: 0.25
 
-  # Odometry fused with IMU is published by robot_localization, so
-  # no need to publish a TF based on encoders alone.
-  enable_odom_tf: false
+ 
+  # publish a TF based on encoders alone.\
+  # set to false if using ekf_localization
+  enable_odom_tf: true
 
   # Wheel separation and radius multipliers
-  wheel_separation_multiplier: 1.0 # default: 1.0
+  wheel_separation_multiplier: 2.0 # default: 1.0
   wheel_radius_multiplier    : 1.0 # default: 1.0
 
   # Velocity and acceleration limits

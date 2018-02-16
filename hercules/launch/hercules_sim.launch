@@ -3,7 +3,9 @@
          command="$(find xacro)/xacro $(find hercules)/urdf/hercules.urdf.xacro
                     --inorder" />
   <!-- Start Gazebo with an empty world -->
-  <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find hercules)/worlds/jackal_race.world" />
+  </include>
   <!-- Spawn a TortoiseBot in Gazebo, taking the description from the
        parameter server -->
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"

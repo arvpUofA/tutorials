@@ -8,6 +8,7 @@
   <xacro:property name="wheel_radius" value="0.0425" />
   <xacro:property name="wheel_width" value="0.03" />
 
+
   <xacro:property name="wheelbase" value="0.16" />
   <xacro:property name="track" value="0.17" />
   <xacro:property name="wheel_vertical_offset" value="0.0" />
@@ -30,20 +31,31 @@
       <geometry>
         <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
       </geometry>
+
+
     </collision>
     <inertial>
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <mass value="1.8"/>
-        <inertia
-          ixx="0.0029" ixy="0" ixz="0"
-          iyy="0.0065" iyz="0"
-          izz="0.0091"/>
+       <mass value="16.523"/>
+      <!-- Moments of inertia: ( chassis without wheels ) -->
+      <inertia
+        ixx="0.3136" ixy="-0.0008" ixz="0.0164"
+        iyy="0.3922" iyz="-0.0009"
+        izz="0.4485"/>
     </inertial>
   </link>
 
   <gazebo reference="base_link">
       <material>Gazebo/Green</material>
   </gazebo>
+
+
+  <!-- https://answers.ros.org/question/151121/how-to-create-soft-objects-wheel-tires-in-gazebo/?answer=197040#post-id-197040 -->
+  <xacro:macro name="cylinder_inertia" params="m r h">
+    <inertia  ixx="${m*(3*r*r+h*h)/12}" ixy = "0" ixz = "0"
+            iyy="${m*(3*r*r+h*h)/12}" iyz = "0"
+            izz="${m*r*r/2}" /> 
+  </xacro:macro>
 
   <xacro:macro name="wheel" params="prefix *joint_pose">
 
@@ -61,13 +73,11 @@
           <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
         </geometry>
       </collision>
+      
       <inertial>
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <mass value="0.05"/>
-        <inertia
-          ixx="2.6326e-5" ixy="0" ixz="0"
-          iyy="4.5156e-5" iyz="0"
-          izz="2.6326e-5"/>
+        <mass value="0.5"/>
+        <cylinder_inertia  m="0.5" r="${wheel_radius}" h="${wheel_width}" />
       </inertial>
     </link>
 
@@ -85,12 +95,13 @@
     <transmission name="${prefix}_wheel_trans">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${prefix}_wheel_joint">
-        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       </joint>
       <actuator name="${prefix}_actuator">
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
+
   </xacro:macro>
 
   <xacro:wheel prefix="front_left">
@@ -106,6 +117,35 @@
     <origin xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
   </xacro:wheel>
 
+
+<link name="laser_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.06"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <joint name="laser_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0 0 0.0475" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="laser_link"/>
+  </joint>
+
+
    <!-- Gazebo plugin for control using diff_drive_controller -->
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
@@ -113,5 +153,37 @@
     </plugin>
   </gazebo>
   <!-- Gazebo -->
+
+  <gazebo reference="laser_link">
+    <sensor type="gpu_ray" name="laser">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-${PI/2}</min_angle>
+            <max_angle>${PI/2}</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>30.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gpu_laser" filename="libgazebo_ros_gpu_laser.so">
+        <topicName>scan</topicName>
+        <frameName>laser_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
 
 </robot>
